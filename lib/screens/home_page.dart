@@ -49,14 +49,17 @@ class HomePage extends StatelessWidget {
                   ListCard(
                     colour: Colors.red,
                     listName: 'FOOD',
+                    listItems: ['Lunch', 'Dinner'],
                   ),
                   ListCard(
                     colour: Colors.blue,
                     listName: 'MONI',
+                    listItems: ['haha', 'hah', 'ipsum', 'dolor'],
                   ),
                   ListCard(
                     colour: Colors.purple,
                     listName: 'STUDY',
+                    listItems: ['kaa', 'boom', 'lorem'],
                   ),
                 ],
               ),
