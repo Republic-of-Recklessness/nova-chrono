@@ -1,8 +1,6 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:nova_chrono/components/list_item.dart';
-import 'package:nova_chrono/utilities/constants.dart';
+// import 'package:nova_chrono/utilities/constants.dart';
 
 class ListPage extends StatelessWidget {
   ListPage({@required this.listName, @required this.listItems});
@@ -14,6 +12,7 @@ class ListPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.black87,
         centerTitle: true,
         title: Text(
           listName,
@@ -28,8 +27,10 @@ class ListPage extends StatelessWidget {
         child: ListView.builder(
           itemCount: listItems.length,
           itemBuilder: (BuildContext context, int index) {
-            return ListItem(
-              listItemName: listItems[index],
+            return Center(
+              child: ListItem(
+                listItemName: listItems[index],
+              ),
             );
           },
         ),
