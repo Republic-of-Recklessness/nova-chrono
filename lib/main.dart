@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nova_chrono/screens/home_page.dart';
+import 'package:nova_chrono/screens/login_page.dart';
 
 void main() {
   runApp(MyApp());
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           // closer together (more dense) than on mobile platforms.
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'Modulus'),
-      home: HomePage(),
+      home: LoginPage(),
     );
   }
 }
