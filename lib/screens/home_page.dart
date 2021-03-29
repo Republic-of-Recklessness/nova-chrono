@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nova_chrono/components/list_card.dart';
 import 'package:nova_chrono/utilities/constants.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:nova_chrono/utilities/firestore_manage.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -63,6 +63,48 @@ class HomePage extends StatelessWidget {
                     listItems: ['kaa', 'boom', 'lorem'],
                   ),
                 ],
+              ),
+            ),
+            SizedBox(
+              height: 10.0,
+              width: double.infinity,
+            ),
+            TextButton.icon(
+              onPressed: () {
+                String newListTitle;
+                showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                          title: Text('New List'),
+                          content: Column(
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              TextField(
+                                autofocus: true,
+                                textAlign: TextAlign.center,
+                                onChanged: (newText) {
+                                  newListTitle = newText;
+                                },
+                              ),
+                              ElevatedButton.icon(
+                                onPressed: () {
+                                  addList(newListTitle);
+                                  Navigator.of(context).pop();
+                                },
+                                icon: Icon(Icons.add),
+                                label: Text('Add List'),
+                              ),
+                            ],
+                          ),
+                        ));
+              },
+              icon: Icon(Icons.add),
+              label: Text(
+                'Add List',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                ),
               ),
             ),
           ],
