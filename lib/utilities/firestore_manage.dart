@@ -4,19 +4,7 @@ import 'package:nova_chrono/utilities/sign_in.dart';
 
 CollectionReference users = FirebaseFirestore.instance.collection('users');
 
-// Future<bool> listsColExists() {
-//   users.doc(userID).get().then((DocumentSnapshot documentSnapshot) {
-//     if (documentSnapshot.exists) {
-//       print('Document exists on the database');
-//       return Future<bool>.value(true);
-//     } else {
-//       return Future<bool>.value(false);
-//     }
-//   });
-// }
-
 Future<void> addList(String listName) async {
-  print(userID);
   return users
       .doc(userID)
       .collection('lists')
@@ -24,4 +12,30 @@ Future<void> addList(String listName) async {
       .set({'isEmpty': true})
       .then((value) => print('Empty list $listName created.'))
       .catchError((error) => print('Failed to add list $listName.'));
+}
+
+Future<int> numOfLists() {
+  int numOfList = 0;
+  users
+      .doc(userID)
+      .collection('lists')
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    numOfList = querySnapshot.size;
+  });
+  return Future.value(numOfList);
+}
+
+List<String> getLists() {
+  List<String> lists = [];
+  users
+      .doc(userID)
+      .collection('lists')
+      .get()
+      .then((QuerySnapshot querySnapshot) {
+    querySnapshot.docs.forEach((doc) {
+      lists.add(doc.id);
+    });
+  });
+  return lists;
 }
