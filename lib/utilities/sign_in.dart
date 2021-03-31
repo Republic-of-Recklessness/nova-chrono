@@ -8,14 +8,6 @@ final GoogleSignIn googleSignIn = GoogleSignIn();
 String userID;
 
 Future<bool> isNewUser(User user) async {
-  // QuerySnapshot result = await FirebaseFirestore.instance
-  //     .collection("users")
-  //     .where("email", isEqualTo: user.email)
-  //     .get();
-  // final List<DocumentSnapshot> docs = result.docs;
-  // return docs.length == 0
-  //     ? Future<bool>.value(true)
-  //     : Future<bool>.value(false);
   FirebaseFirestore.instance
       .collection('users')
       .doc(user.uid)
