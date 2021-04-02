@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:nova_chrono/components/list_card.dart';
 import 'package:nova_chrono/utilities/constants.dart';
-import 'package:nova_chrono/utilities/firestore_manage.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:nova_chrono/utilities/sign_in.dart';
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
+
     return Scaffold(
       backgroundColor: back_grey,
       body: Center(
@@ -41,29 +44,36 @@ class HomePage extends StatelessWidget {
               height: 20.0,
               width: double.infinity,
             ),
-            Container(
-              height: 250.0,
-              child: ListView(
-                scrollDirection: Axis.horizontal,
-                shrinkWrap: true,
-                children: [
-                  ListCard(
-                    colour: Colors.red,
-                    listName: 'FOOD',
-                    listItems: ['Monday', 'Tuesday'],
-                  ),
-                  ListCard(
-                    colour: Colors.blue,
-                    listName: 'MONI',
-                    listItems: ['haha', 'hah', 'ipsum', 'dolor'],
-                  ),
-                  ListCard(
-                    colour: Colors.purple,
-                    listName: 'STUDY',
-                    listItems: ['kaa', 'boom', 'lorem'],
-                  ),
-                ],
-              ),
+            FutureBuilder<QuerySnapshot>(
+              future: users.doc(userID).collection('lists').get(),
+              builder: (BuildContext context,
+                  AsyncSnapshot<QuerySnapshot> snapshot) {
+                if (snapshot.hasError) {
+                  return Text('Something is wrong.');
+                }
+                if (snapshot.connectionState == ConnectionState.done) {
+                  print('connection status is okay!');
+                  List<String> listNames = [];
+                  snapshot.data.docs.forEach((doc) {
+                    listNames.add(doc.id);
+                  });
+                  print(listNames);
+                  return Container(
+                    height: 250.0,
+                    child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: listNames.length,
+                      itemBuilder: (BuildContext ctxt, int index) {
+                        return ListCard(
+                          colour: Colors.red,
+                          listName: listNames[index],
+                        );
+                      },
+                    ),
+                  );
+                }
+                return Text('loading');
+              },
             ),
             SizedBox(
               height: 10.0,
@@ -88,7 +98,15 @@ class HomePage extends StatelessWidget {
                               ),
                               ElevatedButton.icon(
                                 onPressed: () {
-                                  addList(newListTitle);
+                                  users
+                                      .doc(userID)
+                                      .collection('lists')
+                                      .doc(newListTitle)
+                                      .set({'isEmpty': true})
+                                      .then((value) => print(
+                                          'Empty list $newListTitle created.'))
+                                      .catchError((error) => print(
+                                          'Failed to add list $newListTitle.'));
                                   Navigator.of(context).pop();
                                 },
                                 icon: Icon(Icons.add),
