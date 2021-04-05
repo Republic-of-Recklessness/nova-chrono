@@ -1,6 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:nova_chrono/utilities/sign_in.dart';
+import 'package:nova_chrono/services/sign_in.dart';
 
 CollectionReference users = FirebaseFirestore.instance.collection('users');
 
