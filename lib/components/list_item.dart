@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ListItem extends StatelessWidget {
-  ListItem({@required this.listItemName, listItems});
+  ListItem({@required this.listItemName, this.listItems});
 
   final String listItemName;
   final List listItems;
@@ -24,13 +24,23 @@ class ListItem extends StatelessWidget {
             style: TextStyle(
               color: Colors.white,
               fontSize: 40.0,
+              fontWeight: FontWeight.w700,
             ),
           ),
           Container(
-            child: ListView.builder(itemCount: listItems.length,
-            itemBuilder: (BuildContext context, int index) {
-              return Text(listItems[index]);
-            },
+            child: ListView.builder(
+              shrinkWrap: true,
+              itemCount: listItems.length,
+              itemBuilder: (BuildContext context, int index) {
+                return Text(
+                  listItems[index],
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 20.0,
+                  ),
+                );
+              },
+            ),
           ),
         ],
       ),

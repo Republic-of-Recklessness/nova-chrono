@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nova_chrono/components/list_card.dart';
 import 'package:nova_chrono/utilities/constants.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:nova_chrono/utilities/sign_in.dart';
+import 'package:nova_chrono/services/sign_in.dart';
 
 class HomePage extends StatelessWidget {
   @override

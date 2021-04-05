@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:nova_chrono/screens/home_page.dart';
 import 'package:nova_chrono/utilities/constants.dart';
-import 'package:nova_chrono/utilities/sign_in.dart';
+import 'package:nova_chrono/services/sign_in.dart';
 
 class LoginPage extends StatefulWidget {
   @override
