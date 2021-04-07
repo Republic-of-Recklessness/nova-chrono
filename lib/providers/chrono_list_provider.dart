@@ -41,4 +41,14 @@ class ChronoListProvider with ChangeNotifier {
     _isEmpty = chronoList.isEmpty;
     _listItems = chronoList.listItems;
   }
+
+  void saveData() {
+    ChronoList chronoList = ChronoList(
+        listName: _listName, isEmpty: _isEmpty, listItems: _listItems);
+    service.setList(chronoList);
+  }
+
+  void removeData() {
+    service.removeList(_listName);
+  }
 }
