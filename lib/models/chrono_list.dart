@@ -1,8 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+
 class ChronoList {
   String listName;
   bool isEmpty;
-  List<String> listItems;
-  List<Map<String, dynamic>> listSubItems;
+  Map<String, Map<String, dynamic>> listItems;
 
-  // ChronoList.fromFirestore(Map<String, dynamic> firestoreMap) :
+  ChronoList({this.listName, this.isEmpty, this.listItems});
+
+  factory ChronoList.fromFirestore(DocumentSnapshot doc) {
+    Map data = doc.data();
+    bool isEmptyCopy = data['isEmpty'];
+    data.remove('isEmpty');
+    return ChronoList(
+        listName: doc.id, isEmpty: isEmptyCopy ?? true, listItems: data ?? {});
+  }
 }
