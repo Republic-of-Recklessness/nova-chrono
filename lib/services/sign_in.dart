@@ -38,7 +38,7 @@ Future<void> addUser(User currentUser) async {
 }
 
 Future<String> signInWithGoogle() async {
-  await Firebase.initializeApp();
+  // await Firebase.initializeApp();
 
   final GoogleSignInAccount googleSignInAccount = await googleSignIn.signIn();
   final GoogleSignInAuthentication googleSignInAuthentication =
