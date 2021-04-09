@@ -6,12 +6,12 @@ class ChronoListProvider with ChangeNotifier {
   final service = FirestoreService();
   String _listName;
   bool _isEmpty;
-  Map<String, Map<String, dynamic>> _listItems;
+  Map<String, dynamic> _listItems;
 
   // getters
   String get getListName => _listName;
   bool get getIsEmpty => _isEmpty;
-  Map<String, Map<String, dynamic>> get getListItems => _listItems;
+  Map<String, dynamic> get getListItems => _listItems;
 
   // setters
   void changeListName(String newListName) {
@@ -19,8 +19,8 @@ class ChronoListProvider with ChangeNotifier {
     notifyListeners();
   }
 
-  void switchEmpty() {
-    _isEmpty = !_isEmpty;
+  void setIsEmpty(bool emptyval) {
+    _isEmpty = emptyval;
     notifyListeners();
   }
 

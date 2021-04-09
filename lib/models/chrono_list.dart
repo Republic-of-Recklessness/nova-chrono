@@ -3,7 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class ChronoList {
   String listName;
   bool isEmpty;
-  Map<String, Map<String, dynamic>> listItems;
+  Map<String, dynamic> listItems;
 
   ChronoList({this.listName, this.isEmpty, this.listItems});
 
