@@ -11,3 +11,15 @@ final ButtonStyle outlinedButtonStyle = OutlinedButton.styleFrom(
   ),
   minimumSize: Size(100, 50),
 );
+
+InputDecoration inputDecoration = InputDecoration(
+  enabledBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.white, width: 5.0),
+  ),
+  focusedBorder: OutlineInputBorder(
+    borderSide: BorderSide(color: Colors.purple, width: 3.0),
+  ),
+  labelText: 'List Name',
+  fillColor: Colors.white,
+  labelStyle: TextStyle(color: Colors.white),
+);
