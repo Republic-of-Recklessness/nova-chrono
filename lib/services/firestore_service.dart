@@ -11,9 +11,9 @@ class FirestoreService {
         .collection('lists')
         .doc(chronoList.listName)
         .set(chronoList.listItems)
-        .then((value) => print('New List $chronoList.listName added'))
+        .then((value) => print('New List ${chronoList.listName} added'))
         .catchError(
-            (error) => print('Failed to add List $chronoList.listName'));
+            (error) => print('Failed to add List ${chronoList.listName}'));
   }
 
   Stream<List<ChronoList>> getLists() {
