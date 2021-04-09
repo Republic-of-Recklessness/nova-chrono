@@ -6,11 +6,13 @@ class ListCard extends StatelessWidget {
     @required this.colour,
     @required this.listName,
     this.fontColour: Colors.white,
+    this.listIndex,
   });
 
   final Color colour;
   final String listName;
   final Color fontColour;
+  final int listIndex;
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +30,7 @@ class ListCard extends StatelessWidget {
             MaterialPageRoute(
               builder: (context) => ListPage(
                 listName: listName,
+                listIndex: listIndex,
               ),
             ),
           );
