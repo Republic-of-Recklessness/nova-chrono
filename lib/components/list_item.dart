@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:nova_chrono/models/chrono_list.dart';
 
 class ListItem extends StatelessWidget {
-  ListItem({@required this.listItemName, this.listItems});
+  ListItem({@required this.listItemName, this.listIndex});
 
   final String listItemName;
-  final List listItems;
+  final int listIndex;
 
   @override
   Widget build(BuildContext context) {
+    final chronoListItems = Provider.of<List<ChronoList>>(context)[listIndex]
+        .listItems[listItemName];
+
     return Container(
       margin: EdgeInsets.all(20.0),
       padding: EdgeInsets.all(15.0),
@@ -30,10 +35,13 @@ class ListItem extends StatelessWidget {
           Container(
             child: ListView.builder(
               shrinkWrap: true,
-              itemCount: listItems.length,
+              itemCount: chronoListItems.length,
               itemBuilder: (BuildContext context, int index) {
+                String listSubItem = chronoListItems.keys.toList()[index];
+                listSubItem += ' - ';
+                listSubItem += chronoListItems.values.toList()[index];
                 return Text(
-                  listItems[index],
+                  listSubItem,
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 20.0,
