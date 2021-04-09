@@ -6,6 +6,7 @@ import 'package:nova_chrono/models/chrono_list.dart';
 import 'package:nova_chrono/providers/chrono_list_provider.dart';
 // import 'package:nova_chrono/models/chrono_list.dart';
 // import 'package:nova_chrono/providers/chrono_list_provider.dart';
+import 'package:nova_chrono/screens/add_list_item_page.dart';
 
 class ListPage extends StatelessWidget {
   ListPage({@required this.listName, this.listIndex});
@@ -44,59 +45,18 @@ class ListPage extends StatelessWidget {
             );
           },
         ),
-        // child: FutureBuilder<DocumentSnapshot>(
-        //   future: lists.doc(listName).get(),
-        //   builder:
-        //       (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-        //     if (snapshot.hasError) {
-        //       print('Something is wrong!');
-        //       return Text('Something is Wrong!');
-        //     }
-        //     if (snapshot.connectionState == ConnectionState.done) {
-        //       if (snapshot.data.get('isEmpty')) {
-        //         return Center(
-        //             child: Text(
-        //           'This List is Empty',
-        //           style: TextStyle(
-        //             color: Colors.white,
-        //             fontSize: 40.0,
-        //             fontWeight: FontWeight.w700,
-        //           ),
-        //         ));
-        //       } else {
-        //         List<ListItem> listItemWidgets = [];
-        //         print('list $listName not empty!');
-        //         Map<String, dynamic> data = snapshot.data.data();
-        //         data.forEach((key, value) {
-        //           if (key != 'isEmpty') {
-        //             Map<String, dynamic> listItemData = value;
-        //             List<String> listItems = [];
-        //             listItemData.forEach((key1, value1) {
-        //               String tempStr = key1;
-        //               tempStr += " - ";
-        //               tempStr += value1;
-        //               listItems.add(tempStr);
-        //             });
-        //             listItemWidgets.add(ListItem(
-        //               listItemName: key,
-        //               listItems: listItems,
-        //             ));
-        //           }
-        //         });
-        //         return ListView.builder(
-        //           itemCount: data.length - 1,
-        //           itemBuilder: (BuildContext context, int index) {
-        //             return listItemWidgets[index];
-        //           },
-        //         );
-        //       }
-        //     }
-        //     return Text(
-        //       'Loading',
-        //       style: TextStyle(color: Colors.white),
-        //     );
-        //   },
-        // ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => AddListItemPage(),
+            ),
+          );
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.green,
       ),
     );
   }

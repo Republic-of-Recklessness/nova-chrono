@@ -5,6 +5,8 @@ import 'package:nova_chrono/providers/chrono_list_provider.dart';
 import 'package:nova_chrono/utilities/constants.dart';
 import 'package:provider/provider.dart';
 
+// TODO: get rid of legacy Provider.of syntax
+
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
