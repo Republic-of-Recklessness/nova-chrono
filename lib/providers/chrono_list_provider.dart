@@ -3,10 +3,13 @@ import 'package:nova_chrono/models/chrono_list.dart';
 import 'package:nova_chrono/services/firestore_service.dart';
 
 class ChronoListProvider with ChangeNotifier {
-  final service = FirestoreService();
   String _listName;
   bool _isEmpty;
   Map<String, dynamic> _listItems;
+  String uid;
+  final service = FirestoreService();
+
+  ChronoListProvider();
 
   // getters
   String get getListName => _listName;
@@ -14,6 +17,10 @@ class ChronoListProvider with ChangeNotifier {
   Map<String, dynamic> get getListItems => _listItems;
 
   // setters
+  void setUID(String newuid) {
+    service.setUID(newuid);
+  }
+
   void changeListName(String newListName) {
     _listName = newListName;
     notifyListeners();

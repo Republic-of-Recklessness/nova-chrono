@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:rxdart/rxdart.dart';
 
 // providers and models
 import 'package:nova_chrono/providers/auth_provider.dart';
@@ -24,7 +26,7 @@ class MyApp extends StatelessWidget {
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
-    final firestoreService = FirestoreService();
+    CollectionReference users = FirebaseFirestore.instance.collection('users');
 
     return MultiProvider(
       providers: [
@@ -36,8 +38,18 @@ class MyApp extends StatelessWidget {
           create: (context) => context.read<AuthProvider>().authState,
           initialData: null,
         ),
-        StreamProvider.value(
-          value: firestoreService.getLists(),
+        StreamProvider(
+          // value: firestoreService
+          //     .getLists2(context.read<AuthProvider>().authState),
+          create: (context) =>
+              context.read<AuthProvider>().authState.switchMap((user) {
+            if (user == null) return Stream<List<ChronoList>>.value(null);
+            context.read<ChronoListProvider>().setUID(user.uid);
+            return users.doc(user.uid).collection('lists').snapshots().map(
+                (snapshot) => snapshot.docs
+                    .map((document) => ChronoList.fromFirestore(document))
+                    .toList());
+          }),
           initialData: [
             ChronoList(
               listName: 'Sample List',
