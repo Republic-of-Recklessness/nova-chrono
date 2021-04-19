@@ -7,6 +7,10 @@ final FirebaseAuth _auth = FirebaseAuth.instance;
 final GoogleSignIn googleSignIn = GoogleSignIn();
 String userID;
 
+Stream getNewUserStream() {
+  return _auth.authStateChanges();
+}
+
 Future<bool> isNewUser(User user) async {
   FirebaseFirestore.instance
       .collection('users')

@@ -1,13 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:nova_chrono/services/sign_in.dart';
 import 'package:nova_chrono/models/chrono_list.dart';
+import 'package:provider/provider.dart';
 
 class FirestoreService {
   CollectionReference users = FirebaseFirestore.instance.collection('users');
+  String uid;
 
   Future<void> setList(ChronoList chronoList) {
     return users
-        .doc(userID)
+        .doc(uid)
         .collection('lists')
         .doc(chronoList.listName)
         .set(chronoList.listItems)
@@ -17,7 +18,9 @@ class FirestoreService {
   }
 
   Stream<List<ChronoList>> getLists() {
-    return users.doc(userID).collection('lists').snapshots().map((snapshot) =>
+    print('inide getLists');
+    print(uid);
+    return users.doc(uid).collection('lists').snapshots().map((snapshot) =>
         snapshot.docs
             .map((document) => ChronoList.fromFirestore(document))
             .toList());
@@ -25,7 +28,7 @@ class FirestoreService {
 
   Future<void> removeList(String listName) {
     return users
-        .doc(userID)
+        .doc(uid)
         .collection('lists')
         .doc(listName)
         .delete()

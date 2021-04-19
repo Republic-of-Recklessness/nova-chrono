@@ -10,8 +10,8 @@ class ListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final chronoListItems = Provider.of<List<ChronoList>>(context)[listIndex]
-        .listItems[listItemName];
+    final chronoListItems =
+        context.watch<List<ChronoList>>()[listIndex].listItems[listItemName];
 
     return Container(
       margin: EdgeInsets.all(20.0),

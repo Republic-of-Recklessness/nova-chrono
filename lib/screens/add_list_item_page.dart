@@ -10,8 +10,10 @@ class _AddListItemPageState extends State<AddListItemPage> {
   @override
   Widget build(BuildContext context) {
     String listTitle;
-    int numOfListItems = 2;
-    Map<String, String> listItemMap;
+    List<List<String>> listSubItems = [
+      ["one", ""],
+      ["two", ""]
+    ];
 
     return Scaffold(
       body: Container(
@@ -26,10 +28,45 @@ class _AddListItemPageState extends State<AddListItemPage> {
                 listTitle = newText;
               },
             ),
+            SizedBox(
+              height: 20.0,
+              width: double.infinity,
+            ),
             ListView.builder(
-              itemCount: numOfListItems,
-              itemBuilder: (BuildContext context, int index) {},
-            )
+              shrinkWrap: true,
+              itemCount: 2, // TODO: change to var
+              itemBuilder: (BuildContext context, int index) {
+                // return Row(
+                //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                //   children: [
+                //     TextField(
+                //       style: TextStyle(color: Colors.white),
+                //       decoration: inputDecoration,
+                //       onChanged: (String newText) {
+                //         listSubItems[index][0] = newText;
+                //         print(listSubItems);
+                //       },
+                //     ),
+                //     TextField(
+                //       style: TextStyle(color: Colors.white),
+                //       decoration: inputDecoration,
+                //       onChanged: (String newText) {
+                //         listSubItems[index][1] = newText;
+                //         print(listSubItems);
+                //       },
+                //     ),
+                //   ],
+                // );
+                return TextField(
+                  style: TextStyle(color: Colors.white),
+                  decoration: inputDecoration,
+                  onChanged: (String newText) {
+                    listSubItems[index][0] = newText;
+                    print(listSubItems);
+                  },
+                );
+              },
+            ),
           ],
         ),
       ),

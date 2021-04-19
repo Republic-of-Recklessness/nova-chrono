@@ -16,8 +16,8 @@ class ListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final chronoList = Provider.of<List<ChronoList>>(context)[listIndex];
-    final chronoListProvider = Provider.of<ChronoListProvider>(context);
+    final chronoList = context.watch<List<ChronoList>>()[listIndex];
+    final chronoListProvider = context.watch<ChronoListProvider>();
     final List chronoListKeys = chronoList.listItems.keys.toList();
 
     return Scaffold(
