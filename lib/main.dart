@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:nova_chrono/models/chrono_list.dart';
-import 'package:nova_chrono/providers/chrono_list_provider.dart';
-import 'package:nova_chrono/services/firestore_service.dart';
-import 'package:nova_chrono/screens/login_page.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+
+// providers and models
+import 'package:nova_chrono/providers/auth_provider.dart';
+import 'package:nova_chrono/models/chrono_list.dart';
+import 'package:nova_chrono/providers/chrono_list_provider.dart';
+
+// screens
+import 'package:nova_chrono/screens/authenticate.dart';
+
+// services
+import 'package:nova_chrono/services/firestore_service.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,6 +29,13 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (_) => ChronoListProvider()),
+        Provider<AuthProvider>(
+          create: (_) => AuthProvider(FirebaseAuth.instance),
+        ),
+        StreamProvider<User>(
+          create: (context) => context.read<AuthProvider>().authState,
+          initialData: null,
+        ),
         StreamProvider.value(
           value: firestoreService.getLists(),
           initialData: [
@@ -38,7 +53,7 @@ class MyApp extends StatelessWidget {
         ),
       ],
       child: MaterialApp(
-        title: 'Flutter Demo',
+        title: 'Nova Chrono',
         theme: ThemeData(
           // This is the theme of your application.
           //
@@ -56,7 +71,7 @@ class MyApp extends StatelessWidget {
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'Modulus',
         ),
-        home: LoginPage(),
+        home: Authenticate(),
       ),
     );
   }

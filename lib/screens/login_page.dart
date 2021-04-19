@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:nova_chrono/screens/home_page.dart';
 import 'package:nova_chrono/utilities/constants.dart';
-import 'package:nova_chrono/services/sign_in.dart';
+import 'package:nova_chrono/providers/auth_provider.dart';
+import 'package:provider/provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -40,14 +40,15 @@ class _LoginPageState extends State<LoginPage> {
         height: 20.0,
       ),
       onPressed: () {
-        signInWithGoogle().then((result) {
-          if (result != null) {
-            Navigator.pop(context);
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => HomePage()),
-            );
-          }
+        context.read<AuthProvider>().signIn().then((result) {
+          // if (result != null) {
+          //   Navigator.pop(context);
+          //   Navigator.push(
+          //     context,
+          //     MaterialPageRoute(builder: (context) => HomePage()),
+          //   );
+          // }
+          print('LoginPage auth success!');
         });
       },
       style: outlinedButtonStyle,

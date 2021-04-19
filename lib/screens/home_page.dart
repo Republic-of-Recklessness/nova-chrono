@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:nova_chrono/components/list_card.dart';
+import 'package:nova_chrono/components/chrono_list_view.dart';
 import 'package:nova_chrono/models/chrono_list.dart';
 import 'package:nova_chrono/providers/chrono_list_provider.dart';
 import 'package:nova_chrono/utilities/constants.dart';
 import 'package:provider/provider.dart';
 
-// TODO: get rid of legacy Provider.of syntax
+class HomePage extends StatefulWidget {
+  @override
+  _HomePageState createState() => _HomePageState();
+}
 
-class HomePage extends StatelessWidget {
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
-    final chronoLists = Provider.of<List<ChronoList>>(context);
-    final chronoListProvider = Provider.of<ChronoListProvider>(context);
-
+    ChronoListProvider chronoListProvider = context.watch<ChronoListProvider>();
     return Scaffold(
       backgroundColor: back_grey,
       body: Center(
@@ -25,9 +26,10 @@ class HomePage extends StatelessWidget {
               child: Text(
                 'Nova Chrono',
                 style: TextStyle(
-                    fontSize: 48,
-                    color: Colors.white,
-                    fontWeight: FontWeight.w700),
+                  fontSize: 48,
+                  color: Colors.white,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
             ),
             SizedBox(
@@ -48,20 +50,7 @@ class HomePage extends StatelessWidget {
               height: 20.0,
               width: double.infinity,
             ),
-            Container(
-              height: 250.0,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                itemCount: chronoLists.length,
-                itemBuilder: (BuildContext ctxt, int index) {
-                  return ListCard(
-                    colour: Colors.red,
-                    listName: chronoLists[index].listName,
-                    listIndex: index,
-                  );
-                },
-              ),
-            ),
+            ChronoListView(),
             SizedBox(
               height: 10.0,
               width: double.infinity,
@@ -89,7 +78,7 @@ class HomePage extends StatelessWidget {
                                 listName: newListTitle,
                                 isEmpty: true,
                                 listItems: {});
-                            print(chronoLists);
+                            chronoListProvider.loadValues(chronoList);
                             chronoListProvider.saveData();
                             Navigator.of(context).pop();
                           },
