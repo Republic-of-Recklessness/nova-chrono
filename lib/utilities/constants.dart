@@ -23,3 +23,5 @@ InputDecoration inputDecoration = InputDecoration(
   fillColor: Colors.white,
   labelStyle: TextStyle(color: Colors.white),
 );
+
+const pink = Color(0xFFFD5F6B);
