@@ -4,8 +4,6 @@ import 'package:nova_chrono/components/list_item.dart';
 import 'package:provider/provider.dart';
 import 'package:nova_chrono/models/chrono_list.dart';
 import 'package:nova_chrono/providers/chrono_list_provider.dart';
-// import 'package:nova_chrono/models/chrono_list.dart';
-// import 'package:nova_chrono/providers/chrono_list_provider.dart';
 import 'package:nova_chrono/screens/add_list_item_page.dart';
 
 class ListPage extends StatelessWidget {
@@ -16,9 +14,9 @@ class ListPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final chronoList = context.watch<List<ChronoList>>()[listIndex];
     final chronoListProvider = context.watch<ChronoListProvider>();
-    final List chronoListKeys = chronoList.listItems.keys.toList();
+    chronoListProvider.loadValues(context.watch<List<ChronoList>>()[listIndex]);
+    final List chronoListKeys = chronoListProvider.getListItems.keys.toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -35,13 +33,11 @@ class ListPage extends StatelessWidget {
       body: Container(
         color: Colors.black,
         child: ListView.builder(
-          itemCount: chronoList.listItems.length,
+          itemCount: chronoListKeys.length,
           itemBuilder: (BuildContext context, int index) {
             String listItemName = chronoListKeys[index];
-            print(listItemName);
             return ListItem(
               listItemName: listItemName,
-              listIndex: listIndex,
             );
           },
         ),
