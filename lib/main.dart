@@ -82,6 +82,7 @@ class MyApp extends StatelessWidget {
           // closer together (more dense) than on mobile platforms.
           visualDensity: VisualDensity.adaptivePlatformDensity,
           fontFamily: 'Modulus',
+          brightness: Brightness.dark,
         ),
         home: Authenticate(),
       ),
