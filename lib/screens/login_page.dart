@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nova_chrono/utilities/constants.dart';
 import 'package:nova_chrono/providers/auth_provider.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -12,21 +13,29 @@ class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Text(
-              'Nova Chrono',
-              style: TextStyle(
-                fontSize: 50.0,
-                fontWeight: FontWeight.w700,
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: Svg('images/LoginBg.svg'),
+            fit: BoxFit.cover,
+          ),
+        ),
+        child: Center(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Text(
+                'Nova Chrono',
+                style: TextStyle(
+                  fontSize: 50.0,
+                  fontWeight: FontWeight.w700,
+                ),
               ),
-            ),
-            SizedBox(height: 50),
-            _signInButton()
-          ],
+              SizedBox(height: 50),
+              _signInButton()
+            ],
+          ),
         ),
       ),
     );
