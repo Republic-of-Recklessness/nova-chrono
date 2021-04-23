@@ -7,6 +7,8 @@ import 'package:nova_chrono/utilities/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
+// TODO: fix other SVGs
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();

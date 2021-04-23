@@ -24,12 +24,56 @@ class _LoginPageState extends State<LoginPage> {
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Text(
-                'Nova Chrono',
-                style: TextStyle(
-                  fontSize: 50.0,
-                  fontWeight: FontWeight.w700,
+              Container(
+                padding: EdgeInsets.only(left: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    RichText(
+                      text: TextSpan(
+                        text: 'Nova ',
+                        style: TextStyle(
+                          fontFamily: 'Modulus',
+                          fontSize: 55,
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: 'Chrono',
+                            style: TextStyle(
+                              color: pink,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(
+                      height: 20.0,
+                      width: double.infinity,
+                    ),
+                    RichText(
+                      text: TextSpan(
+                        text: 'Unlock ',
+                        style: TextStyle(
+                          fontFamily: 'WorkSans',
+                          fontSize: 20,
+                          color: pink,
+                          fontWeight: FontWeight.w500,
+                        ),
+                        children: [
+                          TextSpan(
+                            text: 'your own collection of customizable lists!',
+                            style: TextStyle(
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ],
                 ),
               ),
               SizedBox(height: 50),

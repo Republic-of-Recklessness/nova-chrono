@@ -79,6 +79,7 @@ class AuthProvider {
   // Sign out method
   Future<void> signOut() async {
     await googleSignIn.signOut();
+    await firebaseAuth.signOut();
 
     print("User signed out");
   }

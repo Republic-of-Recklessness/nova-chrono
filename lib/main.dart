@@ -39,8 +39,6 @@ class MyApp extends StatelessWidget {
           initialData: null,
         ),
         StreamProvider(
-          // value: firestoreService
-          //     .getLists2(context.read<AuthProvider>().authState),
           create: (context) =>
               context.read<AuthProvider>().authState.switchMap((user) {
             if (user == null) return Stream<List<ChronoList>>.value(null);
