@@ -1,4 +1,6 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 import 'package:nova_chrono/screens/list_page.dart';
 
 class ListCard extends StatelessWidget {
@@ -17,10 +19,15 @@ class ListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 160.0,
-      height: 220.0,
+      // width: 160.0,
+      width: (MediaQuery.of(context).size.width - 40) / 2,
+      // height: 220.0,
+      height: MediaQuery.of(context).size.height / 8,
       margin: EdgeInsets.all(10.0),
+      padding: EdgeInsets.symmetric(horizontal: 15.0),
       decoration: BoxDecoration(
+        // TODO: change to png
+        // image: DecorationImage(image: Svg('RedCard.svg')),
         color: colour,
       ),
       child: GestureDetector(
@@ -43,6 +50,7 @@ class ListCard extends StatelessWidget {
             children: [
               Text(
                 listName,
+                textAlign: TextAlign.center,
                 style: TextStyle(
                   color: fontColour,
                   fontSize: 35.0,

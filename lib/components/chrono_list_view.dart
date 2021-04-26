@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nova_chrono/models/chrono_list.dart';
 import 'package:provider/provider.dart';
 import 'package:nova_chrono/components/list_card.dart';
+import 'package:nova_chrono/utilities/constants.dart';
 
 class ChronoListView extends StatelessWidget {
   @override
@@ -15,7 +16,7 @@ class ChronoListView extends StatelessWidget {
         itemCount: chronoLists.length,
         itemBuilder: (BuildContext context, int index) {
           return ListCard(
-            colour: Colors.red,
+            colour: pink,
             listName: chronoLists[index].listName,
             listIndex: index,
           );
