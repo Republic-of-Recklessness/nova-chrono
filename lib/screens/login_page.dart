@@ -23,35 +23,40 @@ class _LoginPageState extends State<LoginPage> {
         child: Center(
           child: Column(
             mainAxisSize: MainAxisSize.max,
-            mainAxisAlignment: MainAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.end,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Container(
-                padding: EdgeInsets.only(left: 20.0),
+                padding: EdgeInsets.symmetric(horizontal: 20.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    RichText(
-                      text: TextSpan(
-                        text: 'Nova ',
-                        style: TextStyle(
-                          fontFamily: 'Modulus',
-                          fontSize: 55,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w700,
-                        ),
-                        children: [
-                          TextSpan(
-                            text: 'Chrono',
+                    Container(
+                      width: double.infinity,
+                      child: FittedBox(
+                        fit: BoxFit.fitWidth,
+                        child: RichText(
+                          text: TextSpan(
+                            text: 'Nova ',
                             style: TextStyle(
-                              color: pink,
+                              fontFamily: 'Modulus',
+                              color: Colors.white,
+                              fontWeight: FontWeight.w700,
                             ),
+                            children: [
+                              TextSpan(
+                                text: 'Chrono',
+                                style: TextStyle(
+                                  color: pink,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
+                        ),
                       ),
                     ),
                     SizedBox(
-                      height: 20.0,
+                      height: MediaQuery.of(context).size.height / 32,
                       width: double.infinity,
                     ),
                     RichText(
@@ -76,8 +81,9 @@ class _LoginPageState extends State<LoginPage> {
                   ],
                 ),
               ),
-              SizedBox(height: 50),
-              _signInButton()
+              SizedBox(height: MediaQuery.of(context).size.height / 3),
+              _signInButton(),
+              SizedBox(height: MediaQuery.of(context).size.height / 16),
             ],
           ),
         ),
@@ -86,32 +92,31 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   Widget _signInButton() {
-    return OutlinedButton.icon(
-      icon: Image.asset(
-        "images/google_logo.png",
-        width: 20.0,
-        height: 20.0,
-      ),
-      onPressed: () {
-        context.read<AuthProvider>().signIn().then((result) {
-          // if (result != null) {
-          //   Navigator.pop(context);
-          //   Navigator.push(
-          //     context,
-          //     MaterialPageRoute(builder: (context) => HomePage()),
-          //   );
-          // }
-          print('LoginPage auth success!');
-        });
-      },
-      style: outlinedButtonStyle,
-      label: Text(
-        'Sign in with Google',
-        style: TextStyle(
-          color: Colors.grey,
-          fontSize: 20,
-          fontWeight: FontWeight.w400,
-          fontFamily: 'Roboto',
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: ElevatedButton.icon(
+        style: ElevatedButton.styleFrom(
+          onPrimary: pink,
+          primary: pink,
+          padding: EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+        ),
+        icon: Image.asset(
+          "images/google_logo.png",
+          width: 20.0,
+          height: 20.0,
+        ),
+        onPressed: () {
+          context.read<AuthProvider>().signIn();
+        },
+        label: Text(
+          'Sign in with Google',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.w500,
+            fontFamily: 'WorkSans',
+          ),
         ),
       ),
     );

@@ -35,7 +35,7 @@ class _HomePageState extends State<HomePage> {
             padding: EdgeInsets.only(left: 15.0),
             children: <Widget>[
               SizedBox(
-                height: 40.0,
+                height: appBar.preferredSize.height,
                 width: double.infinity,
               ),
               Container(
@@ -110,27 +110,34 @@ class _HomePageState extends State<HomePage> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(
-                height: appBar.preferredSize.height + 40,
+                height: appBar.preferredSize.height +
+                    (MediaQuery.of(context).size.height / 16),
                 width: double.infinity,
               ),
               Center(
-                child: RichText(
-                  text: TextSpan(
-                    text: 'Nova ',
-                    style: TextStyle(
-                      fontFamily: 'Modulus',
-                      fontSize: 40,
-                      color: Colors.white,
-                      fontWeight: FontWeight.w700,
-                    ),
-                    children: [
-                      TextSpan(
-                        text: 'Chrono',
+                child: Container(
+                  width: MediaQuery.of(context).size.width,
+                  padding: EdgeInsets.symmetric(horizontal: 50.0),
+                  child: FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: RichText(
+                      text: TextSpan(
+                        text: 'Nova ',
                         style: TextStyle(
-                          color: pink,
+                          fontFamily: 'Modulus',
+                          color: Colors.white,
+                          fontWeight: FontWeight.w700,
                         ),
+                        children: [
+                          TextSpan(
+                            text: 'Chrono',
+                            style: TextStyle(
+                              color: pink,
+                            ),
+                          ),
+                        ],
                       ),
-                    ],
+                    ),
                   ),
                 ),
               ),
@@ -139,28 +146,31 @@ class _HomePageState extends State<HomePage> {
                 width: double.infinity,
               ),
               Container(
-                padding: EdgeInsets.only(left: 16.0),
-                child: Text(
-                  'Lists',
-                  style: TextStyle(
-                    fontSize: 36,
-                    color: pink,
-                    fontWeight: FontWeight.w700,
+                padding: EdgeInsets.only(left: 20.0),
+                width: MediaQuery.of(context).size.width / 4,
+                child: FittedBox(
+                  fit: BoxFit.fitWidth,
+                  child: Text(
+                    'Lists',
+                    style: TextStyle(
+                      color: pink,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ),
               SizedBox(
-                height: 20.0,
+                height: MediaQuery.of(context).size.height / 32,
                 width: double.infinity,
               ),
               ChronoListView(),
               SizedBox(
-                height: 10.0,
+                height: MediaQuery.of(context).size.height / 16,
                 width: double.infinity,
               ),
               Container(
                 width: MediaQuery.of(context).size.width,
-                margin: EdgeInsets.symmetric(horizontal: 10.0),
+                margin: EdgeInsets.symmetric(horizontal: 20.0),
                 child: ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     onPrimary: pink,
