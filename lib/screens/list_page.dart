@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'package:nova_chrono/models/chrono_list.dart';
 import 'package:nova_chrono/providers/chrono_list_provider.dart';
 import 'package:nova_chrono/screens/add_list_item_page.dart';
+import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 class ListPage extends StatelessWidget {
   ListPage({@required this.listName, this.listIndex});
@@ -19,8 +20,9 @@ class ListPage extends StatelessWidget {
     final List chronoListKeys = chronoListProvider.getListItems.keys.toList();
 
     return Scaffold(
+      extendBodyBehindAppBar: true,
       appBar: AppBar(
-        backgroundColor: Colors.black87,
+        backgroundColor: Colors.transparent,
         centerTitle: true,
         title: Text(
           listName,
@@ -31,7 +33,12 @@ class ListPage extends StatelessWidget {
         ),
       ),
       body: Container(
-        color: Colors.black,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: Svg('images/HomeBg.svg'),
+            fit: BoxFit.cover,
+          ),
+        ),
         child: ListView.builder(
           itemCount: chronoListKeys.length,
           itemBuilder: (BuildContext context, int index) {

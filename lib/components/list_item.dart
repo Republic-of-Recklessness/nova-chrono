@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nova_chrono/providers/chrono_list_provider.dart';
+import 'package:nova_chrono/utilities/constants.dart';
 import 'package:provider/provider.dart';
 
 class ListItem extends StatelessWidget {
@@ -15,10 +16,10 @@ class ListItem extends StatelessWidget {
     return Container(
       margin: EdgeInsets.all(20.0),
       padding: EdgeInsets.all(15.0),
-      width: 400.0,
+      width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.all(Radius.circular(10)),
-        color: Colors.blue,
+        // borderRadius: BorderRadius.all(Radius.circular(10)),
+        color: Color(0xFF373C47),
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -26,9 +27,10 @@ class ListItem extends StatelessWidget {
           Text(
             listItemName,
             style: TextStyle(
-              color: Colors.white,
+              fontFamily: 'WorkSans',
+              color: pink,
               fontSize: 40.0,
-              fontWeight: FontWeight.w700,
+              fontWeight: FontWeight.w500,
             ),
           ),
           Container(
@@ -36,13 +38,29 @@ class ListItem extends StatelessWidget {
               shrinkWrap: true,
               itemCount: chronoListItems.length,
               itemBuilder: (BuildContext context, int index) {
+                bool isSpaces = true;
+                String listVal = chronoListItems.values.toList()[index];
+                if (listVal.isEmpty)
+                  isSpaces = true;
+                else {
+                  for (int i = 0; i < listVal.length; i++) {
+                    if (listVal[i] != ' ') {
+                      isSpaces = false;
+                      break;
+                    }
+                  }
+                }
                 String listSubItem = chronoListItems.keys.toList()[index];
-                listSubItem += ' - ';
-                listSubItem += chronoListItems.values.toList()[index];
+                if (!isSpaces) {
+                  listSubItem += ' - ';
+                  listSubItem += listVal;
+                }
                 return Text(
                   listSubItem,
                   style: TextStyle(
                     color: Colors.white,
+                    fontFamily: 'WorkSans',
+                    fontWeight: FontWeight.w400,
                     fontSize: 20.0,
                   ),
                 );
