@@ -29,7 +29,7 @@ class ListItem extends StatelessWidget {
             style: TextStyle(
               fontFamily: 'WorkSans',
               color: pink,
-              fontSize: 40.0,
+              fontSize: 35.0,
               fontWeight: FontWeight.w500,
             ),
           ),

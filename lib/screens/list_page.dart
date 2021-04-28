@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nova_chrono/components/list_item.dart';
-// import 'package:nova_chrono/utilities/constants.dart';
+import 'package:nova_chrono/utilities/constants.dart';
 import 'package:provider/provider.dart';
 import 'package:nova_chrono/models/chrono_list.dart';
 import 'package:nova_chrono/providers/chrono_list_provider.dart';
@@ -22,15 +22,8 @@ class ListPage extends StatelessWidget {
     return Scaffold(
       extendBodyBehindAppBar: true,
       appBar: AppBar(
+        elevation: 0,
         backgroundColor: Colors.transparent,
-        centerTitle: true,
-        title: Text(
-          listName,
-          style: TextStyle(
-            fontWeight: FontWeight.w700,
-            fontSize: 25.0,
-          ),
-        ),
       ),
       body: Container(
         decoration: BoxDecoration(
@@ -40,9 +33,21 @@ class ListPage extends StatelessWidget {
           ),
         ),
         child: ListView.builder(
-          itemCount: chronoListKeys.length,
+          itemCount: chronoListKeys.length + 1,
           itemBuilder: (BuildContext context, int index) {
-            String listItemName = chronoListKeys[index];
+            if (index == 0) {
+              return Center(
+                child: Text(
+                  listName,
+                  style: TextStyle(
+                    color: pink,
+                    fontSize: 40.0,
+                    fontWeight: FontWeight.w700,
+                  ),
+                ),
+              );
+            }
+            String listItemName = chronoListKeys[index - 1];
             return ListItem(
               listItemName: listItemName,
             );
