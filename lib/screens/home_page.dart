@@ -9,12 +9,7 @@ import 'package:flutter_svg_provider/flutter_svg_provider.dart';
 
 // TODO: fix other SVGs
 
-class HomePage extends StatefulWidget {
-  @override
-  _HomePageState createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
+class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppBar appBar = AppBar(
