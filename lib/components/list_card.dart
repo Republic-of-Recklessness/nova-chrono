@@ -19,10 +19,10 @@ class ListCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // width: 160.0,
-      width: (MediaQuery.of(context).size.width - 40) / 2,
-      // height: 220.0,
-      height: MediaQuery.of(context).size.height / 8,
+      width: 160.0,
+      // width: (MediaQuery.of(context).size.width - 40) / 2,
+      height: 220.0,
+      // height: MediaQuery.of(context).size.height / 8,
       margin: EdgeInsets.all(10.0),
       padding: EdgeInsets.symmetric(horizontal: 15.0),
       decoration: BoxDecoration(
